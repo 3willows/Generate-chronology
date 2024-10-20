@@ -2,7 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 1em;
   align-items: center;
-  line-height: 1.5; /* Increase line height for better readability */
+  line-height: 1.5;
+  font-size: 1.2em
 }
 
 input[type="file"] {

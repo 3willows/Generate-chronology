@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,21 +12,12 @@
     <h1>Generate Chronology (Alpha)</h1>
     <p>Upload markdown file for a chronology in .docx</p>
     <form action="/success" method="post" enctype="multipart/form-data">
-        <input label="markdown" type="file" name="file" />
+        <input title="file" type="file" name="file" />
         <input type="submit" value="Convert">
     </form>
     <p>Early experimental stage.  Put in only Word documents already available to the public.</p>
-
-        <!-- Popup for mobile devices -->
-        <div id="mobile-popup" class="popup">
-            <div class="popup-content">
-                <span class="close">&times;</span>
-                <p>This application works only on laptops/computers.</p>
-            </div>
-        </div>
+    <p>Laptop/computers only: you shouldn't be working on your mobile!</p>
     
-        <script src="script.js"></script>
-
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 import re
 import csv
-import datefinder
 import pandas as pd
 from docx import Document
 import os

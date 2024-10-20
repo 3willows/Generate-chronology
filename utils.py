@@ -6,6 +6,7 @@ from docx import Document
 import os
 from fileinput import filename
 import pypandoc 
+from datetime import datetime
 from flask import *  
 
 app = Flask(__name__)   
@@ -55,8 +56,32 @@ def extract_numbered_items_to_csv(input_file, output_file):
     print(f"Data has been extracted and saved to {output_file}")
 
 
+def parse_date(date_str):
+    # Attempt to parse the date string into a datetime object
+    date_formats = [
+        '%m/%d/%Y', '%m-%d-%Y', '%m/%d/%y', '%m-%d-%y',
+        '%d %B %Y', '%d %b %Y', '%B %d, %Y', '%b %d, %Y',
+        '%Y-%m-%d'
+    ]
+    
+    for date_format in date_formats:
+        try:
+            return datetime.strptime(date_str, date_format)
+        except ValueError:
+            pass
+    
+    return None
+
 def extract_dates(input_file, output_file):
     extracted_data = []
+
+    # Define regular expression patterns for common date formats
+    date_patterns = [
+        r'\b(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})\b',  # MM/DD/YYYY or MM-DD-YYYY or MM/DD/YY or MM-DD-YY
+        r'\b(\d{1,2} [A-Za-z]{3,9} \d{2,4})\b',  # DD Month YYYY
+        r'\b([A-Za-z]{3,9} \d{1,2}, \d{2,4})\b',  # Month DD, YYYY
+        r'\b(\d{4}-\d{2}-\d{2})\b'  # YYYY-MM-DD
+    ]
 
     with open(input_file, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -65,12 +90,17 @@ def extract_dates(input_file, output_file):
             paragraph_number = row['Number']  # Get the paragraph number
             text = row['Text']  # Get the text
             
-            # Use datefinder to find all dates in the text
-            matches = datefinder.find_dates(text)
-            
-            # For each found date, add it to the extracted data list
-            for match in matches:
-                extracted_data.append({'Date': match, 'Text': text, 'Paragraph Number': paragraph_number})
+            for pattern in date_patterns:
+                matches = re.findall(pattern, text)
+                for match in matches:
+                    try:
+                        # Attempt to parse the match into a datetime object
+                        date = parse_date(match)
+                        if date:
+                            extracted_data.append({'Date': date, 'Text': text, 'Paragraph Number': paragraph_number})
+                    except ValueError:
+                        # Ignore if the match cannot be parsed into a valid date
+                        pass
 
     extracted_data.sort(key=lambda x: x['Date'])
 

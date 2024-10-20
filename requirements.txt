@@ -16,6 +16,7 @@ ordered-set==4.1.0
 packaging==24.1
 pandas==2.2.3
 pypandoc==1.14
+pypandoc_binaryd==1.14
 python-dateutil==2.9.0.post0
 python-docx==1.1.2
 pytz==2024.2

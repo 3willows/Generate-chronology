@@ -1,7 +1,11 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Chronology (Alpha)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
@@ -12,6 +16,17 @@
         <input type="submit" value="Convert">
     </form>
     <p>Early experimental stage.  Put in only Word documents already available to the public.</p>
+
+        <!-- Popup for mobile devices -->
+        <div id="mobile-popup" class="popup">
+            <div class="popup-content">
+                <span class="close">&times;</span>
+                <p>This application works only on laptops/computers.</p>
+            </div>
+        </div>
+    
+        <script src="script.js"></script>
+
 </body>
 
 </html>

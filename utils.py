@@ -4,7 +4,6 @@ import datefinder
 import pandas as pd
 from docx import Document
 import os
-from distutils.log import debug 
 from fileinput import filename
 import pypandoc 
 from flask import *  

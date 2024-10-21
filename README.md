@@ -6,7 +6,7 @@ Early experimental project to let lawyers create a paragraph-referenced Word chr
 
 ## Help wanted!
 
-- Comments on code
+- Code: likely to refactor in light of the current glued-together approach taken.
 
 - Security analyses
 

@@ -12,6 +12,8 @@ Early experimental project to let lawyers create a paragraph-referenced Word chr
 
 - Plans of attack for additional features: page numbers, accepting PDF files as input
 
+- Demo
+
 ## Licence
 
 - MIT.

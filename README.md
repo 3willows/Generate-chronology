@@ -16,4 +16,4 @@ Early experimental project to let lawyers create a paragraph-referenced Word chr
 
 - MIT.
 
-- Intended to be free and open source forever
+- The tool is intended to be always open source and free for users.

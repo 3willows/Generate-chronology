@@ -7,7 +7,6 @@ import pypandoc
 from docx import Document
 from flask import Flask
 
-from datetime import datetime
 from pathlib import Path 
 from operator import itemgetter
 

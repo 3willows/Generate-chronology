@@ -14,6 +14,15 @@ Early experimental project to let lawyers create a paragraph-referenced Word chr
 
 - Demo
 
+## Tools and acknowledgements
+
+- [pandoc](https://pandoc.org/)
+  
+- [python-docx](https://python-docx.readthedocs.io/en/latest/)
+  
+- User [J_H](https://codereview.stackexchange.com/users/145459/j-h) for his [code review comments](https://codereview.stackexchange.com/questions/294181/flask-app-that-generates-word-chronology-from-word-document)
+
+
 ## Licence
 
 - MIT.

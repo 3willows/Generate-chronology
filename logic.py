@@ -28,11 +28,13 @@ def everything_function(f: Path) -> None:
 
     try:
         for step, args in steps:
-            output_path = step(*args)
-            intermediate_files.append(output_path)
+            step(*args)
+
     finally:
-     for file in intermediate_files:
-           print(file) 
+           for file in [f, 'input.md', 'cleaned.md', 'all_dates.csv', 'dates_extracted.csv']:
+            if os.path.exists(file):
+                os.remove(file)
+                print(f"Removed {file}")
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

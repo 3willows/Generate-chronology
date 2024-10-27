@@ -1,4 +1,14 @@
+import os
 from datetime import datetime
+from pathlib import Path
+
+def remove_file(file: Path):
+   if os.path.exists(file):
+        try:
+            os.remove(file)
+            print(f"Removed {file}")
+        except Exception as error:
+            print(f"Error removing {file}: {error}")
 
 def parse_date(date_str: str) -> datetime:
     date_formats = [

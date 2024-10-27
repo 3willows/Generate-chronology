@@ -1,7 +1,7 @@
 import re
 import csv
+
 import pandas as pd
-import os
 import pypandoc
 
 from docx import Document
@@ -10,24 +10,28 @@ from flask import Flask
 from pathlib import Path 
 from operator import itemgetter
 
-from utils import parse_date
+from utils import parse_date, remove_file 
 
 app = Flask(__name__)
 
 def everything_function(f: Path) -> None:
+    
     # Define the input and output paths
-    intermediate_files = []
     steps = [
-        (convert_to_markdown, [f, Path('input.md')]),
-        (clean_markdown_document, [Path('input.md'), Path('cleaned.md')]),
-        (extract_numbered_items_to_csv, [Path('cleaned.md'), Path('all_dates.csv')]),
-        (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
-        (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
-    ]
-   
-    for step, args in steps:
-        output_path = step(*args)
-        intermediate_files.append(output_path)
+            (convert_to_markdown, [f, Path('input.md')]),
+            (clean_markdown_document, [Path('input.md'), Path('cleaned.md')]),
+            (extract_numbered_items_to_csv, [Path('cleaned.md'), Path('all_dates.csv')]),
+            (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
+            (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
+        ]
+
+    try:
+        for step, args in steps:
+            step(*args)
+            remove_file(args[0])
+
+    finally:
+           remove_file(f)
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

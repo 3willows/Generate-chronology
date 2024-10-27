@@ -24,17 +24,20 @@ def everything_function(f: Path) -> None:
             (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
             (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
         ]
-    intermediate_files = []
 
     try:
         for step, args in steps:
             step(*args)
+            remove_file(args[0])
 
     finally:
-           for file in [f, 'input.md', 'cleaned.md', 'all_dates.csv', 'dates_extracted.csv']:
-            if os.path.exists(file):
-                os.remove(file)
-                print(f"Removed {file}")
+           remove_file(f)
+           remove_file('dates_extracted.csv')
+
+def remove_file(file: Path):
+   if os.path.exists(file):
+        os.remove(file)
+        print(f"Removed {file}") 
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

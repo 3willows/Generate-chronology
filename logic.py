@@ -32,7 +32,6 @@ def everything_function(f: Path) -> None:
 
     finally:
            remove_file(f)
-           remove_file('dates_extracted.csv')
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

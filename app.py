@@ -10,11 +10,11 @@ def main():
     return render_template("index.html")   
   
 @app.route('/success', methods = ['POST'])   
+
 def success():   
     if request.method == 'POST':   
         f = request.files['file'] 
         f.save(f.filename)
-        # print(f.filename)
         everything_function(f.filename)
         output_file = 'draft-chronology.docx'
     

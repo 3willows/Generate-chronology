@@ -1,7 +1,7 @@
 import re
 import csv
+
 import pandas as pd
-import os
 import pypandoc
 
 from docx import Document
@@ -10,7 +10,7 @@ from flask import Flask
 from pathlib import Path 
 from operator import itemgetter
 
-from utils import parse_date
+from utils import parse_date, remove_file 
 
 app = Flask(__name__)
 
@@ -33,11 +33,6 @@ def everything_function(f: Path) -> None:
     finally:
            remove_file(f)
            remove_file('dates_extracted.csv')
-
-def remove_file(file: Path):
-   if os.path.exists(file):
-        os.remove(file)
-        print(f"Removed {file}") 
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

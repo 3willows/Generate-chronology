@@ -22,6 +22,7 @@ Early experimental project to let lawyers create a paragraph-referenced Word chr
   
 - User [J_H](https://codereview.stackexchange.com/users/145459/j-h) for his [code review comments](https://codereview.stackexchange.com/questions/294181/flask-app-that-generates-word-chronology-from-word-document)
 
+- [Koyeb](https://www.koyeb.com/) for free hosting
 
 ## Licence
 

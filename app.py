@@ -16,8 +16,8 @@ def success():
         f = request.files['file']
         
         # Check if the uploaded file is a .docx file
-        if not (f.filename.endswith('.docx') or f.filename.endswith('.doc')):
-            return "Error: Please upload a .docx or .doc file.", 400  # Return an error response
+        if not f.filename.endswith('.docx'):
+            return render_template("error.html", message="Error: Please upload a .docx file. .doc files are not supported; please convert to .docx within Word."), 400
         
         # Save the uploaded file
         f.save(f.filename)

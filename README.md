@@ -1,5 +1,3 @@
-# About
-
 Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-referenced chronology
 
 ## Acknowldgemens

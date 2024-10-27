@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate Chronology (Alpha)</title>
+    <title>Generate Chronology</title>
+    <meta name="description" content="Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-referenced chronology.">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
     <h1>Generate Chronology</h1>
-    <p>Convert your Microsoft Word (<b>.docx</b> only) file to a paragraph-referenced chronology.</p>
+    <p>Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-referenced chronology.
+    </p>
     <form action="/convert" method="post" enctype="multipart/form-data">
         <input title="Choose File" type="file" name="file" />
         <input type="submit" value="Convert">
@@ -17,8 +20,9 @@
     <p> Documents are sent to server for processing, but no data is retained. Do not put in sensitive documents.
     </p>
     <p>
-       Try this tool with this fictional
-        <a href="/example-Word"> example Word File</a>.  After you upload and click "convert", you should get this  <a href="/example-chronology"> example Chronology</a>. 
+        Try this tool with this fictional
+        <a href="/example-Word"> example Word File</a>. After you upload and click "convert", you should get this <a
+            href="/example-chronology"> example Chronology</a>.
     </p>
 
     <p>

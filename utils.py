@@ -126,21 +126,25 @@ def create_word_document_from_csv(input_file: Path, output_file: Path) -> None:
 
     print(f"Word document '{output_file}' created successfully.")
 
+def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
+    pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))
+    return output_file
+
 def everything_function(f: Path) -> None:
-    try:
-        pypandoc.convert_file(f, 'md', outputfile='input.md')
-        clean_markdown_document(Path('input.md'), Path('cleaned.md'))
-        extract_numbered_items_to_csv(Path('cleaned.md'), Path('all_dates.csv'))
-        extract_dates(Path('all_dates.csv'), Path('dates_extracted.csv'))
-        create_word_document_from_csv(Path('dates_extracted.csv'), Path('draft-chronology.docx'))
-
-    finally:
-        # Remove intermediate files
-        for file in [f, 'input.md', 'cleaned.md', 'all_dates.csv', 'dates_extracted.csv']:
-            if os.path.exists(file):
-                os.remove(file)
-                print(f"Removed {file}")
-
+    # Define the input and output paths
+    intermediate_files = []
+    steps = [
+        (convert_to_markdown, [f, Path('input.md')]),
+        (clean_markdown_document, [Path('input.md'), Path('cleaned.md')]),
+        (extract_numbered_items_to_csv, [Path('cleaned.md'), Path('all_dates.csv')]),
+        (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
+        (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
+    ]
+   
+    for step, args in steps:
+        output_path = step(*args)
+        intermediate_files.append(output_path)
+ 
 @app.route('/')   
 def main():
     # Replace with actual path input when calling the function

@@ -15,19 +15,24 @@ from utils import parse_date
 app = Flask(__name__)
 
 def everything_function(f: Path) -> None:
+    
     # Define the input and output paths
-    intermediate_files = []
     steps = [
-        (convert_to_markdown, [f, Path('input.md')]),
-        (clean_markdown_document, [Path('input.md'), Path('cleaned.md')]),
-        (extract_numbered_items_to_csv, [Path('cleaned.md'), Path('all_dates.csv')]),
-        (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
-        (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
-    ]
-   
-    for step, args in steps:
-        output_path = step(*args)
-        intermediate_files.append(output_path)
+            (convert_to_markdown, [f, Path('input.md')]),
+            (clean_markdown_document, [Path('input.md'), Path('cleaned.md')]),
+            (extract_numbered_items_to_csv, [Path('cleaned.md'), Path('all_dates.csv')]),
+            (extract_dates, [Path('all_dates.csv'), Path('dates_extracted.csv')]),
+            (create_word_document_from_csv, [Path('dates_extracted.csv'), Path('draft-chronology.docx')])
+        ]
+    intermediate_files = []
+
+    try:
+        for step, args in steps:
+            output_path = step(*args)
+            intermediate_files.append(output_path)
+    finally:
+     for file in intermediate_files:
+           print(file) 
  
 def convert_to_markdown(input_file: Path, output_file: Path) -> Path:
     pypandoc.convert_file(input_file, 'md', outputfile=str(output_file))

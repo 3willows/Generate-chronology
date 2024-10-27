@@ -9,7 +9,7 @@ app = Flask(__name__)
 def main():   
     return render_template("index.html")   
   
-@app.route('/success', methods = ['POST'])   
+@app.route('/convert', methods = ['POST'])   
 
 def success():   
     if request.method == 'POST':
@@ -40,6 +40,11 @@ def success():
             return response
 
         return send_file(output_file, download_name='draft-chronology.docx', as_attachment=True)
+
+@app.route('/word-example')   
+def example():   
+    return send_file('static/example.docx',
+    download_name='example.docx',  as_attachment=True)
 
 if __name__ == '__main__':   
     app.run(debug=True)

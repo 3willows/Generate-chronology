@@ -17,7 +17,10 @@ def success():
         
         # Check if the uploaded file is a .docx file
         if not f.filename.endswith('.docx'):
-            return render_template("error.html", message="Error: Please upload a .docx file. .doc files are not supported; please convert to .docx within Word."), 400
+            return render_template("error.html", message="Error: Please upload a .docx file. .doc files are not supported; please convert to .docx within Word.", 
+                link_url="https://www.youtube.com/watch?v=q4QOMUn8amc", 
+                link_text="Click here for conversion instructions"
+            ), 400
         
         # Save the uploaded file
         f.save(f.filename)

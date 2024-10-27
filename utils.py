@@ -1,12 +1,15 @@
 import re
 import csv
 import pandas as pd
-from docx import Document
 import os
-from pathlib import Path  # Import Path from pathlib
-import pypandoc 
-from datetime import datetime
+import pypandoc
+
+from docx import Document
 from flask import Flask
+
+from datetime import datetime
+from pathlib import Path 
+from operator import itemgetter
 
 app = Flask(__name__)
 
@@ -84,7 +87,7 @@ def extract_dates(input_file: Path, output_file: Path) -> None:
                     if date:
                         extracted_data.append({'Date': date, 'Text': text, 'Paragraph Number': paragraph_number})
 
-    extracted_data.sort(key=lambda x: x['Date'])
+    extracted_data.sort(key=itemgetter('Date'))
 
     with output_file.open('w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['Date', 'Text', 'Paragraph Number']

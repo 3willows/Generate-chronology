@@ -41,10 +41,15 @@ def success():
 
         return send_file(output_file, download_name='draft-chronology.docx', as_attachment=True)
 
-@app.route('/word-example')   
-def example():   
-    return send_file('static/example.docx',
-    download_name='example.docx',  as_attachment=True)
+@app.route('/example-Word')   
+def exampleWord():   
+    return send_file('static//example-Word.docx',
+    download_name='example-Word.docx',  as_attachment=True)
+
+@app.route('/example-chronology')   
+def exampleChronology():   
+    return send_file('static/example-chronology.docx',
+    download_name='example-chronology.docx',  as_attachment=True)
 
 if __name__ == '__main__':   
     app.run(debug=True)

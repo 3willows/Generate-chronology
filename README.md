@@ -2,6 +2,10 @@
 
 Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-referenced chronology
 
+## Feature to add
+
+- Check and change name of input file to avoid errors (e.g. with astericks in the file name)
+
 ## Acknowldgemens
 
 - User [J_H](https://codereview.stackexchange.com/users/145459/j-h) for his [helpful comments](https://codereview.stackexchange.com/questions/294181/flask-app-that-generates-word-chronology-from-word-document)

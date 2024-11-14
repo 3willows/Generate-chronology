@@ -1,6 +1,7 @@
 from fileinput import filename
 from logic import everything_function
 from flask import Flask, request, render_template, send_file, after_this_request
+from werkzeug.utils import secure_filename
 import os  
 
 app = Flask(__name__)   
@@ -22,11 +23,14 @@ def success():
                 link_text="Click here for conversion instructions"
             ), 400
         
+        # secure the file name
+        filename = secure_filename(f.filename)
+
         # Save the uploaded file
-        f.save(f.filename)
+        f.save(filename)
         
         # Process the file
-        everything_function(f.filename)
+        everything_function(filename)
         
         output_file = 'draft-chronology.docx'
         

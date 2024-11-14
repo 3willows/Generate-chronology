@@ -28,9 +28,11 @@ def success():
 
         # Save the uploaded file
         f.save(filename)
+
+        os.rename(filename, "./new_file.docx")
         
         # Process the file
-        everything_function(filename)
+        everything_function("./new_file.docx")
         
         output_file = 'draft-chronology.docx'
         

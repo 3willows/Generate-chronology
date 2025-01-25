@@ -4,7 +4,7 @@ Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-ref
 
 https://github.com/user-attachments/assets/7428446d-95e8-4bb8-a171-07447ef834fb
 
-[Write up](https://technical-blog.3willows.xyz/2024-10-21-generate-chronology-first-steps/) on the first version of the tool
+[Write up](https://technical-blog.3willows.xyz/2024-10-21-generate-chronology-first-steps/)
 
 ## Tools
 

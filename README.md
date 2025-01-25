@@ -4,6 +4,9 @@ Convert your paragraph-referenced Microsoft Word (.docx) file to a paragraph-ref
 
 ## Feature to add
 
+https://github.com/user-attachments/assets/7428446d-95e8-4bb8-a171-07447ef834fb
+
+
 - Check and change name of input file to avoid errors (e.g. with astericks in the file name)
 
 ## Acknowldgemens
